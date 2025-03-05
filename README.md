@@ -57,7 +57,10 @@ This application will provide administrators with a centralized platform to:
 - **Developer:** Syed Annas Ali
 
 ## Installation & Setup
-1. Clone the repository:
+  Clone the repository:
    ```sh
-   [git clone https://github.com/your-repo-url.git](https://github.com/Najam266/Parking_Navigator_App.git)
+   git clone https://github.com/your-repo-url.git](https://github.com/Najam266/Parking_Navigator_App.git
+   ```
+
+   
    
