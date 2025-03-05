@@ -1,0 +1,746 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="packages\SQLite.3.13.0\build\net45\SQLite.props" Condition="Exists('packages\SQLite.3.13.0\build\net45\SQLite.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7629EE16-142B-4BAD-9E0A-8411FA47341B}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>APP</RootNamespace>
+    <AssemblyName>APP</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Bunifu.Licensing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=f89b4760ba7dcb6b, processorArchitecture=MSIL">
+      <HintPath>packages\Bunifu.UI.WinForms.5.0.3\lib\Bunifu.Licensing.dll</HintPath>
+    </Reference>
+    <Reference Include="Bunifu.UI.WinForms.1.5.3, Version=1.5.3.0, Culture=neutral, PublicKeyToken=e8e24ccd28363fe9, processorArchitecture=MSIL">
+      <HintPath>packages\Bunifu.UI.WinForms.5.0.3\lib\Bunifu.UI.WinForms.1.5.3.dll</HintPath>
+    </Reference>
+    <Reference Include="Bunifu.UI.WinForms.BunifuButton, Version=4.1.1.0, Culture=neutral, PublicKeyToken=e8e24ccd28363fe9, processorArchitecture=MSIL">
+      <HintPath>packages\Bunifu.UI.WinForms.5.0.3\lib\Bunifu.UI.WinForms.BunifuButton.dll</HintPath>
+    </Reference>
+    <Reference Include="Bunifu.UI.WinForms.BunifuCheckBox, Version=4.1.1.0, Culture=neutral, PublicKeyToken=e8e24ccd28363fe9, processorArchitecture=MSIL">
+      <HintPath>packages\Bunifu.UI.WinForms.5.0.3\lib\Bunifu.UI.WinForms.BunifuCheckBox.dll</HintPath>
+    </Reference>
+    <Reference Include="Bunifu.UI.WinForms.BunifuCircleProgress, Version=4.1.1.0, Culture=neutral, PublicKeyToken=e8e24ccd28363fe9, processorArchitecture=MSIL">
+      <HintPath>packages\Bunifu.UI.WinForms.5.0.3\lib\Bunifu.UI.WinForms.BunifuCircleProgress.dll</HintPath>
+    </Reference>
+    <Reference Include="Bunifu.UI.WinForms.BunifuColorTransition, Version=4.1.1.0, Culture=neutral, PublicKeyToken=e8e24ccd28363fe9, processorArchitecture=MSIL">
+      <HintPath>packages\Bunifu.UI.WinForms.5.0.3\lib\Bunifu.UI.WinForms.BunifuColorTransition.dll</HintPath>
+    </Reference>
+    <Reference Include="Bunifu.UI.WinForms.BunifuDataGridView, Version=4.1.1.0, Culture=neutral, PublicKeyToken=e8e24ccd28363fe9, processorArchitecture=MSIL">
+      <HintPath>packages\Bunifu.UI.WinForms.5.0.3\lib\Bunifu.UI.WinForms.BunifuDataGridView.dll</HintPath>
+    </Reference>
+    <Reference Include="Bunifu.UI.WinForms.BunifuDatePicker, Version=4.1.1.0, Culture=neutral, PublicKeyToken=e8e24ccd28363fe9, processorArchitecture=MSIL">
+      <HintPath>packages\Bunifu.UI.WinForms.5.0.3\lib\Bunifu.UI.WinForms.BunifuDatePicker.dll</HintPath>
+    </Reference>
+    <Reference Include="Bunifu.UI.WinForms.BunifuDropdown, Version=4.1.1.0, Culture=neutral, PublicKeyToken=e8e24ccd28363fe9, processorArchitecture=MSIL">
+      <HintPath>packages\Bunifu.UI.WinForms.5.0.3\lib\Bunifu.UI.WinForms.BunifuDropdown.dll</HintPath>
+    </Reference>
+    <Reference Include="Bunifu.UI.WinForms.BunifuFormDock, Version=4.1.1.0, Culture=neutral, PublicKeyToken=e8e24ccd28363fe9, processorArchitecture=MSIL">
+      <HintPath>packages\Bunifu.UI.WinForms.5.0.3\lib\Bunifu.UI.WinForms.BunifuFormDock.dll</HintPath>
+    </Reference>
+    <Reference Include="Bunifu.UI.WinForms.BunifuGauge, Version=4.1.1.0, Culture=neutral, PublicKeyToken=e8e24ccd28363fe9, processorArchitecture=MSIL">
+      <HintPath>packages\Bunifu.UI.WinForms.5.0.3\lib\Bunifu.UI.WinForms.BunifuGauge.dll</HintPath>
+    </Reference>
+    <Reference Include="Bunifu.UI.WinForms.BunifuGradientPanel, Version=4.1.1.0, Culture=neutral, PublicKeyToken=e8e24ccd28363fe9, processorArchitecture=MSIL">
+      <HintPath>packages\Bunifu.UI.WinForms.5.0.3\lib\Bunifu.UI.WinForms.BunifuGradientPanel.dll</HintPath>
+    </Reference>
+    <Reference Include="Bunifu.UI.WinForms.BunifuGroupBox, Version=4.1.1.0, Culture=neutral, PublicKeyToken=e8e24ccd28363fe9, processorArchitecture=MSIL">
+      <HintPath>packages\Bunifu.UI.WinForms.5.0.3\lib\Bunifu.UI.WinForms.BunifuGroupBox.dll</HintPath>
+    </Reference>
+    <Reference Include="Bunifu.UI.WinForms.BunifuImageButton, Version=4.1.1.0, Culture=neutral, PublicKeyToken=e8e24ccd28363fe9, processorArchitecture=MSIL">
+      <HintPath>packages\Bunifu.UI.WinForms.5.0.3\lib\Bunifu.UI.WinForms.BunifuImageButton.dll</HintPath>
+    </Reference>
+    <Reference Include="Bunifu.UI.WinForms.BunifuLabel, Version=4.1.1.0, Culture=neutral, PublicKeyToken=e8e24ccd28363fe9, processorArchitecture=MSIL">
+      <HintPath>packages\Bunifu.UI.WinForms.5.0.3\lib\Bunifu.UI.WinForms.BunifuLabel.dll</HintPath>
+    </Reference>
+    <Reference Include="Bunifu.UI.WinForms.BunifuPages, Version=4.1.1.0, Culture=neutral, PublicKeyToken=e8e24ccd28363fe9, processorArchitecture=MSIL">
+      <HintPath>packages\Bunifu.UI.WinForms.5.0.3\lib\Bunifu.UI.WinForms.BunifuPages.dll</HintPath>
+    </Reference>
+    <Reference Include="Bunifu.UI.WinForms.BunifuPanel, Version=4.1.1.0, Culture=neutral, PublicKeyToken=e8e24ccd28363fe9, processorArchitecture=MSIL">
+      <HintPath>packages\Bunifu.UI.WinForms.5.0.3\lib\Bunifu.UI.WinForms.BunifuPanel.dll</HintPath>
+    </Reference>
+    <Reference Include="Bunifu.UI.WinForms.BunifuPictureBox, Version=4.1.1.0, Culture=neutral, PublicKeyToken=e8e24ccd28363fe9, processorArchitecture=MSIL">
+      <HintPath>packages\Bunifu.UI.WinForms.5.0.3\lib\Bunifu.UI.WinForms.BunifuPictureBox.dll</HintPath>
+    </Reference>
+    <Reference Include="Bunifu.UI.WinForms.BunifuProgressBar, Version=4.1.1.0, Culture=neutral, PublicKeyToken=e8e24ccd28363fe9, processorArchitecture=MSIL">
+      <HintPath>packages\Bunifu.UI.WinForms.5.0.3\lib\Bunifu.UI.WinForms.BunifuProgressBar.dll</HintPath>
+    </Reference>
+    <Reference Include="Bunifu.UI.WinForms.BunifuRadioButton, Version=4.1.1.0, Culture=neutral, PublicKeyToken=e8e24ccd28363fe9, processorArchitecture=MSIL">
+      <HintPath>packages\Bunifu.UI.WinForms.5.0.3\lib\Bunifu.UI.WinForms.BunifuRadioButton.dll</HintPath>
+    </Reference>
+    <Reference Include="Bunifu.UI.WinForms.BunifuRating, Version=4.1.1.0, Culture=neutral, PublicKeyToken=e8e24ccd28363fe9, processorArchitecture=MSIL">
+      <HintPath>packages\Bunifu.UI.WinForms.5.0.3\lib\Bunifu.UI.WinForms.BunifuRating.dll</HintPath>
+    </Reference>
+    <Reference Include="Bunifu.UI.WinForms.BunifuScrollBar, Version=4.1.1.0, Culture=neutral, PublicKeyToken=e8e24ccd28363fe9, processorArchitecture=MSIL">
+      <HintPath>packages\Bunifu.UI.WinForms.5.0.3\lib\Bunifu.UI.WinForms.BunifuScrollBar.dll</HintPath>
+    </Reference>
+    <Reference Include="Bunifu.UI.WinForms.BunifuSeparator, Version=4.1.1.0, Culture=neutral, PublicKeyToken=e8e24ccd28363fe9, processorArchitecture=MSIL">
+      <HintPath>packages\Bunifu.UI.WinForms.5.0.3\lib\Bunifu.UI.WinForms.BunifuSeparator.dll</HintPath>
+    </Reference>
+    <Reference Include="Bunifu.UI.WinForms.BunifuShadowPanel, Version=4.1.1.0, Culture=neutral, PublicKeyToken=e8e24ccd28363fe9, processorArchitecture=MSIL">
+      <HintPath>packages\Bunifu.UI.WinForms.5.0.3\lib\Bunifu.UI.WinForms.BunifuShadowPanel.dll</HintPath>
+    </Reference>
+    <Reference Include="Bunifu.UI.WinForms.BunifuShapes, Version=4.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Bunifu.UI.WinForms.5.0.3\lib\Bunifu.UI.WinForms.BunifuShapes.dll</HintPath>
+    </Reference>
+    <Reference Include="Bunifu.UI.WinForms.BunifuSlider, Version=4.1.1.0, Culture=neutral, PublicKeyToken=e8e24ccd28363fe9, processorArchitecture=MSIL">
+      <HintPath>packages\Bunifu.UI.WinForms.5.0.3\lib\Bunifu.UI.WinForms.BunifuSlider.dll</HintPath>
+    </Reference>
+    <Reference Include="Bunifu.UI.WinForms.BunifuSnackbar, Version=4.1.1.0, Culture=neutral, PublicKeyToken=e8e24ccd28363fe9, processorArchitecture=MSIL">
+      <HintPath>packages\Bunifu.UI.WinForms.5.0.3\lib\Bunifu.UI.WinForms.BunifuSnackbar.dll</HintPath>
+    </Reference>
+    <Reference Include="Bunifu.UI.WinForms.BunifuTextBox, Version=4.1.1.0, Culture=neutral, PublicKeyToken=e8e24ccd28363fe9, processorArchitecture=MSIL">
+      <HintPath>packages\Bunifu.UI.WinForms.5.0.3\lib\Bunifu.UI.WinForms.BunifuTextBox.dll</HintPath>
+    </Reference>
+    <Reference Include="Bunifu.UI.WinForms.BunifuToggleSwitch, Version=4.1.1.0, Culture=neutral, PublicKeyToken=e8e24ccd28363fe9, processorArchitecture=MSIL">
+      <HintPath>packages\Bunifu.UI.WinForms.5.0.3\lib\Bunifu.UI.WinForms.BunifuToggleSwitch.dll</HintPath>
+    </Reference>
+    <Reference Include="Bunifu.UI.WinForms.BunifuToolTip, Version=4.1.1.0, Culture=neutral, PublicKeyToken=e8e24ccd28363fe9, processorArchitecture=MSIL">
+      <HintPath>packages\Bunifu.UI.WinForms.5.0.3\lib\Bunifu.UI.WinForms.BunifuToolTip.dll</HintPath>
+    </Reference>
+    <Reference Include="Bunifu.UI.WinForms.BunifuTransition, Version=4.1.1.0, Culture=neutral, PublicKeyToken=e8e24ccd28363fe9, processorArchitecture=MSIL">
+      <HintPath>packages\Bunifu.UI.WinForms.5.0.3\lib\Bunifu.UI.WinForms.BunifuTransition.dll</HintPath>
+    </Reference>
+    <Reference Include="Bunifu.UI.WinForms.BunifuUserControl, Version=4.1.1.0, Culture=neutral, PublicKeyToken=e8e24ccd28363fe9, processorArchitecture=MSIL">
+      <HintPath>packages\Bunifu.UI.WinForms.5.0.3\lib\Bunifu.UI.WinForms.BunifuUserControl.dll</HintPath>
+    </Reference>
+    <Reference Include="Bunifu.UI.WinForms.Deprecated, Version=4.1.1.0, Culture=neutral, PublicKeyToken=e8e24ccd28363fe9, processorArchitecture=MSIL">
+      <HintPath>packages\Bunifu.UI.WinForms.5.0.3\lib\Bunifu.UI.WinForms.Deprecated.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.SQLite, Version=1.0.118.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.118.0\lib\net46\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.EF6, Version=1.0.118.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>packages\System.Data.SQLite.EF6.1.0.118.0\lib\net46\System.Data.SQLite.EF6.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.Linq, Version=1.0.118.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>packages\System.Data.SQLite.Linq.1.0.118.0\lib\net46\System.Data.SQLite.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Design" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AddBooking.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddBooking.Designer.cs">
+      <DependentUpon>AddBooking.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Addmember.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Addmember.Designer.cs">
+      <DependentUpon>Addmember.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Adduser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Adduser.Designer.cs">
+      <DependentUpon>Adduser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Add_employee.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Add_employee.designer.cs">
+      <DependentUpon>Add_employee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Afterlogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Afterlogin.Designer.cs">
+      <DependentUpon>Afterlogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Allfeeds.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Allfeeds.Designer.cs">
+      <DependentUpon>Allfeeds.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Allslotsview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Allslotsview.Designer.cs">
+      <DependentUpon>Allslotsview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BookingUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BookingUser.Designer.cs">
+      <DependentUpon>BookingUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BronzeFeed.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BronzeFeed.Designer.cs">
+      <DependentUpon>BronzeFeed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Bronzeusers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bronzeusers.Designer.cs">
+      <DependentUpon>Bronzeusers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Carcounts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Carcounts.Designer.cs">
+      <DependentUpon>Carcounts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Carcountsgrph.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Carcountsgrph.Designer.cs">
+      <DependentUpon>Carcountsgrph.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cartypegraph.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cartypegraph.Designer.cs">
+      <DependentUpon>Cartypegraph.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Change_Pass.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Change_Pass.designer.cs">
+      <DependentUpon>Change_Pass.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Delete_Employee.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Delete_Employee.Designer.cs">
+      <DependentUpon>Delete_Employee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Developers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Developers.Designer.cs">
+      <DependentUpon>Developers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Disabledslots.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Disabledslots.Designer.cs">
+      <DependentUpon>Disabledslots.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Discounts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Discounts.designer.cs">
+      <DependentUpon>Discounts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Employee.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Employee.Designer.cs">
+      <DependentUpon>Employee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Endbook.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Endbook.Designer.cs">
+      <DependentUpon>Endbook.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Evfloor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Evfloor.Designer.cs">
+      <DependentUpon>Evfloor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Feedback.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Feedback.Designer.cs">
+      <DependentUpon>Feedback.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Analytics.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Analytics.designer.cs">
+      <DependentUpon>Analytics.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Feedform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Feedform.Designer.cs">
+      <DependentUpon>Feedform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Floor1slots.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Floor1slots.Designer.cs">
+      <DependentUpon>Floor1slots.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Floor2slots.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Floor2slots.Designer.cs">
+      <DependentUpon>Floor2slots.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Floor3slots.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Floor3slots.Designer.cs">
+      <DependentUpon>Floor3slots.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmShowEmp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmShowEmp.Designer.cs">
+      <DependentUpon>frmShowEmp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Goldfeed.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Goldfeed.Designer.cs">
+      <DependentUpon>Goldfeed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Goldusers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Goldusers.Designer.cs">
+      <DependentUpon>Goldusers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="History_user.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="History_user.Designer.cs">
+      <DependentUpon>History_user.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Leavepark.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Leavepark.Designer.cs">
+      <DependentUpon>Leavepark.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Live.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Live.Designer.cs">
+      <DependentUpon>Live.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Managemem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Managemem.Designer.cs">
+      <DependentUpon>Managemem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="memfeedgraph.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="memfeedgraph.Designer.cs">
+      <DependentUpon>memfeedgraph.cs</DependentUpon>
+    </Compile>
+    <Compile Include="memgraph.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="memgraph.Designer.cs">
+      <DependentUpon>memgraph.cs</DependentUpon>
+    </Compile>
+    <Compile Include="new.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="new.Designer.cs">
+      <DependentUpon>new.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Nonfeed.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Nonfeed.Designer.cs">
+      <DependentUpon>Nonfeed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Parkingslot.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Parkingslot.Designer.cs">
+      <DependentUpon>Parkingslot.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Policies_Updataion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Policies_Updataion.designer.cs">
+      <DependentUpon>Policies_Updataion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="pricehrs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="pricehrs.Designer.cs">
+      <DependentUpon>pricehrs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pricing.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pricing.designer.cs">
+      <DependentUpon>Pricing.cs</DependentUpon>
+    </Compile>
+    <Compile Include="History.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="History.Designer.cs">
+      <DependentUpon>History.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main.Designer.cs">
+      <DependentUpon>Main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Loginform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Loginform.Designer.cs">
+      <DependentUpon>Loginform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Homepage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Homepage.Designer.cs">
+      <DependentUpon>Homepage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Membership.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Membership.Designer.cs">
+      <DependentUpon>Membership.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Profitbymembers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Profitbymembers.Designer.cs">
+      <DependentUpon>Profitbymembers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Profitbytype.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Profitbytype.Designer.cs">
+      <DependentUpon>Profitbytype.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Regularuser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Regularuser.Designer.cs">
+      <DependentUpon>Regularuser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reservation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reservation.Designer.cs">
+      <DependentUpon>Reservation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Revenue.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Revenue.Designer.cs">
+      <DependentUpon>Revenue.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Silverfeed.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Silverfeed.Designer.cs">
+      <DependentUpon>Silverfeed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Silverusers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Silverusers.Designer.cs">
+      <DependentUpon>Silverusers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TotProfits.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TotProfits.Designer.cs">
+      <DependentUpon>TotProfits.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Updateprice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Updateprice.Designer.cs">
+      <DependentUpon>Updateprice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserManagement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserManagement.Designer.cs">
+      <DependentUpon>UserManagement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="userprofile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="userprofile.Designer.cs">
+      <DependentUpon>userprofile.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="AddBooking.resx">
+      <DependentUpon>AddBooking.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Addmember.resx">
+      <DependentUpon>Addmember.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Adduser.resx">
+      <DependentUpon>Adduser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Add_employee.resx">
+      <DependentUpon>Add_employee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Afterlogin.resx">
+      <DependentUpon>Afterlogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Allfeeds.resx">
+      <DependentUpon>Allfeeds.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Allslotsview.resx">
+      <DependentUpon>Allslotsview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BookingUser.resx">
+      <DependentUpon>BookingUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BronzeFeed.resx">
+      <DependentUpon>BronzeFeed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bronzeusers.resx">
+      <DependentUpon>Bronzeusers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Carcounts.resx">
+      <DependentUpon>Carcounts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Carcountsgrph.resx">
+      <DependentUpon>Carcountsgrph.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cartypegraph.resx">
+      <DependentUpon>Cartypegraph.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Change_Pass.resx">
+      <DependentUpon>Change_Pass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Delete_Employee.resx">
+      <DependentUpon>Delete_Employee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Developers.resx">
+      <DependentUpon>Developers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Disabledslots.resx">
+      <DependentUpon>Disabledslots.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Discounts.resx">
+      <DependentUpon>Discounts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Employee.resx">
+      <DependentUpon>Employee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Endbook.resx">
+      <DependentUpon>Endbook.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Evfloor.resx">
+      <DependentUpon>Evfloor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Feedback.resx">
+      <DependentUpon>Feedback.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Analytics.resx">
+      <DependentUpon>Analytics.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Feedform.resx">
+      <DependentUpon>Feedform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Floor1slots.resx">
+      <DependentUpon>Floor1slots.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Floor2slots.resx">
+      <DependentUpon>Floor2slots.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Floor3slots.resx">
+      <DependentUpon>Floor3slots.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmShowEmp.resx">
+      <DependentUpon>frmShowEmp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Goldfeed.resx">
+      <DependentUpon>Goldfeed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Goldusers.resx">
+      <DependentUpon>Goldusers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="History_user.resx">
+      <DependentUpon>History_user.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Leavepark.resx">
+      <DependentUpon>Leavepark.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Live.resx">
+      <DependentUpon>Live.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Managemem.resx">
+      <DependentUpon>Managemem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="memfeedgraph.resx">
+      <DependentUpon>memfeedgraph.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="memgraph.resx">
+      <DependentUpon>memgraph.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="new.resx">
+      <DependentUpon>new.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Nonfeed.resx">
+      <DependentUpon>Nonfeed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Parkingslot.resx">
+      <DependentUpon>Parkingslot.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Policies_Updataion.resx">
+      <DependentUpon>Policies_Updataion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pricehrs.resx">
+      <DependentUpon>pricehrs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pricing.resx">
+      <DependentUpon>Pricing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="History.resx">
+      <DependentUpon>History.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Loginform.resx">
+      <DependentUpon>Loginform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Homepage.resx">
+      <DependentUpon>Homepage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Membership.resx">
+      <DependentUpon>Membership.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Profitbymembers.resx">
+      <DependentUpon>Profitbymembers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Profitbytype.resx">
+      <DependentUpon>Profitbytype.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Regularuser.resx">
+      <DependentUpon>Regularuser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reservation.resx">
+      <DependentUpon>Reservation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Revenue.resx">
+      <DependentUpon>Revenue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Silverfeed.resx">
+      <DependentUpon>Silverfeed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Silverusers.resx">
+      <DependentUpon>Silverusers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TotProfits.resx">
+      <DependentUpon>TotProfits.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Updateprice.resx">
+      <DependentUpon>Updateprice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserManagement.resx">
+      <DependentUpon>UserManagement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="userprofile.resx">
+      <DependentUpon>userprofile.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="parking.db">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\WhatsApp Image 2024-02-18 at 01.28.35.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Screenshot 2024-03-04 at 2.29.07 AM.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Screenshot 2024-03-04 at 2.28.59 AM.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Screenshot 2024-03-04 at 2.49.34 AM.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\SQLite.3.13.0\build\net45\SQLite.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\SQLite.3.13.0\build\net45\SQLite.props'))" />
+    <Error Condition="!Exists('packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.118.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.118.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets'))" />
+  </Target>
+  <Import Project="packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <Import Project="packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.118.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets" Condition="Exists('packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.118.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" />
+</Project>
